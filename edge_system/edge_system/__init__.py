@@ -17,8 +17,10 @@ db = SQLAlchemy(app)
 
 ## import views
 from edge_system.machine.machine import machine
+from edge_system.part.part import part
 
 app.register_blueprint(machine)
+app.register_blueprint(part)
 
 ## create the database
 with app.app_context():

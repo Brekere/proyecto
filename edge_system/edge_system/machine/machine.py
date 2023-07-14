@@ -1,4 +1,3 @@
-from operator import mod
 from flask import Blueprint, render_template, request, flash
 from flask.helpers import url_for
 from werkzeug.utils import redirect, secure_filename
@@ -7,6 +6,7 @@ import os
 
 from edge_system import db, ALLOWED_EXTENSIONS_FILE, app
 from edge_system.machine.model.machine import Machine, RegisterForm
+from edge_system.part.model.part import Part
 
 machine = Blueprint('machine', __name__)
 

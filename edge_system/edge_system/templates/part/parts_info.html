@@ -1,0 +1,57 @@
+{% extends 'layout/base_plots.html' %}
+
+{% block content %}
+
+<a data-toggle="tooltip" data-placement="top" data-title="Registrar" class="btn btn-primary" href="{{ url_for('part.part_register') }}">Registrar parte</a>
+
+
+        {% for part in parts %}
+        <!-- Page content-->
+        <div class="jumbotron">
+            <div>
+                <h1 class="display-4"> <img src="{{ url_for('static',filename="/uploads/"+part.file)}}" height="150"> <a class="itemtable" href="{{ url_for('part.show', id=part['id']) }}">
+                  {{ part['namepart'] }}
+                </a></h1>
+            </div>
+          <table class="blueTable"> 
+            <thead>
+            <tr>
+                <th>Element</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Id</td>
+                    <td>{{part.id}}</td>
+                </tr>
+                <tr>
+                    <td>Timestamp</td>
+                    <td>{{part.timestamp.strftime("%d/%m/%Y")}}</td>
+                </tr>
+                <tr>
+                    <td>OK</td>
+                    <td>{{part.OK}}</td>
+                </tr>
+                <tr>
+                  <td>NOK</td>
+                  <td>{{part.NOK}}</td>
+                </tr>
+                <tr>
+                    <td>Working Time</td>
+                    <td>{{part.working_time}}</td>
+                </tr>
+                <tr>
+                  <td>id_machine</td>
+                  <td><a class="itemtable" href="{{ url_for('machine.show', id=part['id_machine']) }}">{{part.id_machine}}</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {% endfor %}
+        
+    </div>
+    
+</div>
+
+{% endblock %}
