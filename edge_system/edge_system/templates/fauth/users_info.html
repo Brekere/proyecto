@@ -1,0 +1,128 @@
+{% extends 'layout/base_plots.html' %}
+
+{% block content %}
+
+<a data-toggle="tooltip" data-placement="top" data-title="Registrar" class="btn btn-primary"
+    href="{{ url_for('fauth.register') }}">Registrar usuario</a>
+
+<div class="jumbotron">
+    <div>
+        <h1 class="display-4">Usuarios</h1>
+    </div>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+<!-- Page content-->
+
+<table class="blueTable sortable" id="myTable">
+    <thead>
+        <tr class="header">
+            <th>
+                <h3>Nombre</h3>
+            </th>
+            <th>
+                <h3>Usuario</h3>
+            </th>
+            <th>
+                <h3>Puesto</h3>
+            </th>
+            <th>
+                <h3>Opciones</h3>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for user in users %}
+        <tr>
+            <td>
+                <h5><a class="itemtable" href="{{ url_for('fauth.user_show', id=user['id']) }}">{{ user['fullname'] }}</a></h5>
+            </td>
+            <td>
+                <h5>{{ user.username }}</h5>
+            </td>
+            <td>
+                <h5>{{ user.id_role.value }}</h5>
+            </td>
+            <td>
+                <a data-toggle="tooltip" data-placement="top" data-title="Editar" class="btn btn-success btn-sm"
+                    href="{{ url_for('fauth.user_update', id=user['id']) }}"><i class="fa fa-edit"></i></a>
+                <button data-toggle="modal" data-target="#deleteModal" data-name="{{user['username']}}"
+                    data-id="{{user['id']}}" class="btn btn-danger btn-sm"
+                    href="{{ url_for('fauth.user_delete', id=user['id']) }}"><i data-toggle="tooltip"
+                        data-placement="top" data-bs-title="Eliminar usuario {{ user['username'] }}"
+                        class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar: <span></span></h5>
+                <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro que desea borrar al usuario seleccionado
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <a href="#" id="deleteProduct" class="btn btn-danger">Borrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    window.onload = function () {
+
+        $("#deleteModal").on("show.bs.modal", function (event) {
+            var button = event.relatedTarget
+            var name = button.getAttribute("data-name")
+            var id = button.getAttribute("data-id")
+
+            console.log(this)
+
+            this.querySelector(".modal-title span").innerHTML = name
+            this.querySelector("#deleteProduct").setAttribute("href", "/users/delete/" + id)
+        })
+    }
+</script>
+
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+
+{% endblock %}

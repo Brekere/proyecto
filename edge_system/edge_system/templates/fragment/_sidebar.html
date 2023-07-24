@@ -1,0 +1,50 @@
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+      <div class="sidebar-heading border-bottom bg-light">Production Metrics</div>
+      <div class="list-group list-group-flush dropdown">
+        
+        <br>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ url_for('machine.info_all') }}">Machine Info</a>    
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ url_for('part.part_info_all') }}">Part Info</a>    
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ url_for('production.production_all') }}">Production(prueba)</a>    
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{ url_for('fauth.users_info_all') }}">Usuarios</a>    
+      
+        <div class="control">
+          <form>
+            <h5 class="Titulo">Panel</h5>
+              <a class="boton inicio" href="{{ url_for('control.start') }}"><i class="fa fa-eject"></i><br>Inicio de ciclo</a>
+              <a class="boton paro" href="{{ url_for('control.stop') }}">Paro de <br><i class="fa fa-ban"></i><br> emergencia</a>
+              <a class="boton luzon" href="{{ url_for('control.luzon') }}"><i class="fa fa-sun"></i>On</a>
+              <a class="boton luzoff" href="{{ url_for('control.luzoff') }}"><i class="fa fa-moon"></i>Off</a>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+      <button class="btn btn-primary" id="sidebarToggle">Metrics Menu</button>
+
+      <script>
+        window.addEventListener('DOMContentLoaded', event => {
+    
+    // Toggle the side navigation
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    if (sidebarToggle) {
+        // Uncomment Below to persist sidebar toggle between refreshes
+        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+        //     document.body.classList.toggle('sb-sidenav-toggled');
+        // }
+        sidebarToggle.addEventListener('click', event => {
+            console.log("ENTRO")
+            event.preventDefault();
+            document.body.classList.toggle('sb-sidenav-toggled');
+            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        });
+    }
+    
+    });
+    
+    </script>
+
+ 
