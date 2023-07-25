@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 from flask_login import login_required
 
 from edge_system.part.model.part import Part, PartForm
-from edge_system import db, ALLOWED_EXTENSIONS_FILE, app, rol_admin_need
+from edge_system import rol_admin_need
 
 
 production = Blueprint('production', __name__)

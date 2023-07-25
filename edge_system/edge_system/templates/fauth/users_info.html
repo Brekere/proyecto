@@ -45,13 +45,9 @@
                 <h5>{{ user.id_role.value }}</h5>
             </td>
             <td>
-                <a data-toggle="tooltip" data-placement="top" data-title="Editar" class="btn btn-success btn-sm"
-                    href="{{ url_for('fauth.user_update', id=user['id']) }}"><i class="fa fa-edit"></i></a>
-                <button data-toggle="modal" data-target="#deleteModal" data-name="{{user['username']}}"
-                    data-id="{{user['id']}}" class="btn btn-danger btn-sm"
-                    href="{{ url_for('fauth.user_delete', id=user['id']) }}"><i data-toggle="tooltip"
-                        data-placement="top" data-bs-title="Eliminar usuario {{ user['username'] }}"
-                        class="fa fa-trash"></i></button>
+                <a data-toggle="tooltip" data-placement="top" data-title="Editar" class="btn btn-success btn-sm" href="{{ url_for('fauth.user_update', id=user['id']) }}"><i class="fa fa-edit"></i></a>
+                <a data-toggle="modal" data-target="#deleteModal" data-name="{{user['username']}}" data-id="{{user['id']}}" 
+                    class="btn btn-danger btn-sm" href="{{ url_for('fauth.user_delete', id=user['id']) }}"><i data-toggle="tooltip" data-placement="top" data-bs-title="Eliminar usuario {{ user['username'] }}" class="fa fa-trash"></i></a>
             </td>
         </tr>
         {% endfor %}

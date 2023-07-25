@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template
-import numpy as np
 from flask_login import login_required
 
 control = Blueprint('control', __name__)

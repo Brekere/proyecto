@@ -121,17 +121,16 @@
 <script>
     window.onload = function () {
         
-    $("#deleteModal").on("show.bs.modal", function (event) {
-        var button = event.relatedTarget
-        var name = button.getAttribute("data-name")
-        var id = button.getAttribute("data-id")
-        
-        console.log(this)
+        $("#deleteModal").on("show.bs.modal", function (event) {
+            var button = event.relatedTarget
+            var name = button.getAttribute("data-name")
+            var id = button.getAttribute("data-id")
+            
+            console.log(this)
 
-        this.querySelector(".modal-title span").innerHTML=name
-        this.querySelector("#deleteProduct").setAttribute("href","/machine/delete/"+id)
-    })
-
+            this.querySelector(".modal-title span").innerHTML=name
+            this.querySelector("#deleteProduct").setAttribute("href","/machine/delete/"+id)
+        })
     }
   </script>
 
